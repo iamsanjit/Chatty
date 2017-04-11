@@ -26,13 +26,15 @@
 				@if(Auth::check())
 
 					<li>
-						<a href="{{route('profile', Auth::user()->username)}}">
+						<a href="{{route('profile.show', Auth::user()->username)}}">
 							{{Auth::user()->getNameOrUsername()}}
 						</a>
 					</li>
 
 					<li>
-						<a href="#">Update profile</a>
+						<a href="{{route('profile.edit', Auth::user()->username)}}">
+							Update profile
+						</a>
 					</li>
 					
 					<li>

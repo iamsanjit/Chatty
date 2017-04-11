@@ -16,7 +16,7 @@ class SessionController extends Controller
 
 	public function create()
 	{	
-		return View('login');
+		return View('auth.login');
 	}
 
 	public function store(Request $request)

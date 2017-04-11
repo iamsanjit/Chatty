@@ -12,5 +12,8 @@ Route::get('/logout', 'SessionController@destroy')->name('logout');
 
 Route::get('/search', 'SearchController@index')->name('search');
 
-Route::get('/user/{username}', 'ProfileController@show')->name('profile');
+Route::get('/user/{username}', 'ProfileController@show')->name('profile.show');
+Route::get('/user/{username}/edit', 'ProfileController@edit')->name('profile.edit');
+Route::patch('/user/{username}', 'ProfileController@update')->name('profile.update');
+
 
