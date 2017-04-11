@@ -3,9 +3,12 @@
 namespace Chatty\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-class User extends Model
+class User extends Model implements AuthenticatableContract
 {	
+	use Authenticatable;
 	protected $fillable = [
 		'username',
 		'email',
@@ -14,4 +17,6 @@ class User extends Model
 		'last_name',
 		'location'
 	];
+
+	
 }
