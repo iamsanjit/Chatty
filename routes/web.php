@@ -11,3 +11,6 @@ Route::post('/login', 'SessionController@store');
 Route::get('/logout', 'SessionController@destroy')->name('logout');
 
 Route::get('/search', 'SearchController@index')->name('search');
+
+Route::get('/user/{username}', 'ProfileController@show')->name('profile');
+
