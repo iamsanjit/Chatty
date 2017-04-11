@@ -3,7 +3,7 @@
 	<div class="container">
 
 		<div class="navbar-header">
-			<a class="navbar-brand" href="#">Chatty</a>
+			<a class="navbar-brand" href="{{route('home')}}">Chatty</a>
 		</div>
 
 		<div class="collapse navbar-collapse">
@@ -14,7 +14,7 @@
 	       				<li><a href="#">Friends</a></li>
 	       		        </ul>
 	       		        
-	       		        <form class="navbar-form navbar-left" role="search" action="#">
+	       		        <form class="navbar-form navbar-left" role="search" method="get" action="{{route('search') }}">
 	       				<div class="form-group">
 	       					<input type="text" name="query" class="form-control" placeholder="Find people">
 	       				</div>

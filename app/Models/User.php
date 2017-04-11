@@ -5,6 +5,7 @@ namespace Chatty\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use DB;
 
 class User extends Model implements AuthenticatableContract
 {	
@@ -17,6 +18,12 @@ class User extends Model implements AuthenticatableContract
 		'last_name',
 		'location'
 	];
+
+	public function scopeSearch($query, $search)
+	{
+		return $query->where(DB::raw('CONCAT(first_name, \' \', last_name)'), 'LIKE', '%' . $search . '%')
+			->orWhere('username', 'LIKE', '%' . $search . '%');
+	}
 
 	public function getName()
 	{
