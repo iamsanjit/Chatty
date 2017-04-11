@@ -7,6 +7,13 @@ use Auth;
 
 class SessionController extends Controller
 {
+
+	public function __construct()
+	{
+		// Only guest can access methods of this call, except destroy
+		$this->middleware('guest', ['except' => 'destroy']);
+	}
+
 	public function create()
 	{	
 		return View('login');
@@ -24,10 +31,11 @@ class SessionController extends Controller
 			return redirect()->back()->with('info', 'Invalid credentials. Please try again.');
 		}
 
-		return redirect()->back();
+		return redirect()->home();
 	}
 
 	public function destroy() {
 		Auth::logout();
+		return redirect()->home();
 	}
 }

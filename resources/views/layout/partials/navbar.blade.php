@@ -8,24 +8,29 @@
 
 		<div class="collapse navbar-collapse">
 		        
-		        <ul class="nav navbar-nav">
-				<li><a href="#">Timeline</a></li>
-				<li><a href="#">Friends</a></li>
-		        </ul>
-		        
-		        <form class="navbar-form navbar-left" role="search" action="#">
-				<div class="form-group">
-					<input type="text" name="query" class="form-control" placeholder="Find people">
-				</div>
-				<button type="submit" class="btn btn-default">Search</button>
-		        </form>
+		       @if (Auth::check())
+	       		        <ul class="nav navbar-nav">
+	       				<li><a href="#">Timeline</a></li>
+	       				<li><a href="#">Friends</a></li>
+	       		        </ul>
+	       		        
+	       		        <form class="navbar-form navbar-left" role="search" action="#">
+	       				<div class="form-group">
+	       					<input type="text" name="query" class="form-control" placeholder="Find people">
+	       				</div>
+	       				<button type="submit" class="btn btn-default">Search</button>
+	       		        </form>
+		       @endif
 		    
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Dayle</a></li>
-				<li><a href="#">Update profile</a></li>
-				<li><a href="#">Sign out</a></li>
-				<li><a href="#">Sign up</a></li>
-				<li><a href="#">Sign in</a></li>
+				@if(Auth::check())
+					<li><a href="#">{{Auth::user()->getNameOrUsername()}}</a></li>
+					<li><a href="#">Update profile</a></li>
+					<li><a href="{{route('logout')}}">Sign out</a></li>
+				@else
+					<li><a href="{{route('registration')}}">Create new Account</a></li>
+					<li><a href="{{route('login')}}">Login</a></li>
+				@endif
 			</ul>
 
 		</div>
