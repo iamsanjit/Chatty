@@ -19,6 +19,22 @@ class User extends Model implements AuthenticatableContract
 		'location'
 	];
 
+	public function friends() {
+		return $this->friendsOfMine()->get()->merge(
+			$this->friendOf()->get()
+			);
+	}
+
+	public function friendsOfMine() {
+		return $this->belongsToMany('\Chatty\Models\User', 'friends', 'user_id', 'friend_id')
+			->wherePivot('accepted', true);
+	}
+
+	public function friendOf() {
+		return $this->belongsToMany('\Chatty\Models\User', 'friends', 'friend_id', 'user_id')
+			->wherePivot('accepted', true);
+	}
+
 	public function scopeSearch($query, $search)
 	{
 		return $query->where(DB::raw('CONCAT(first_name, \' \', last_name)'), 'LIKE', '%' . $search . '%')
@@ -34,6 +50,10 @@ class User extends Model implements AuthenticatableContract
 			return $this->first_name;
 		}
 		return  null;
+	}
+
+	public function getFirstnameOrUsername() {
+		return $this->first_name ?: $this->username;
 	}
 
 	public function getNameOrUsername () {
