@@ -17,5 +17,6 @@ Route::get('/user/{username}/edit', 'ProfileController@edit')->name('profile.edi
 Route::patch('/user/{username}', 'ProfileController@update')->name('profile.update');
 
 Route::get('/{username}/friends', 'FriendController@index')->name('friends.index');
+Route::get('/friend/add/{username}', 'FriendController@store')->name('friends.add');
 
 

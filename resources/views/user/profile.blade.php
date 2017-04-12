@@ -25,7 +25,7 @@
 
 			@else
 
-				<a href="#" class="btn btn-primary">
+				<a href="{{route('friends.add', $user->username)}}" class="btn btn-primary">
 					Send friend request
 				</a>
 
