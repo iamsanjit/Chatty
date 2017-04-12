@@ -3,11 +3,15 @@
 namespace Chatty\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomeController extends Controller
 {	
 	public function index()
 	{
-		return View('home');
+		if (Auth::check()) {
+			return View('timeline.index');
+		}
+		return view('home');
 	}
 }

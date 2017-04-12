@@ -66,7 +66,7 @@ class FriendController extends Controller
 
 		return redirect()
 			->route('profile.show', $user->username)
-			->with('info', 'You and ' . $user->getFirstnameOrUsername() . 'are now friends.');
+			->with('info', 'You and ' . $user->getFirstnameOrUsername() . ' are now friends.');
 
 	}
 }
