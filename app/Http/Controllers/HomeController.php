@@ -18,6 +18,7 @@ class HomeController extends Controller
 			}) 
 			->orderBy('created_at', 'desc')
 			->paginate(5);
+			
 			return View('timeline.index', compact('statuses'));
 		}
 		return view('home');
