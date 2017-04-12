@@ -21,5 +21,6 @@ Route::get('/friend/add/{username}', 'FriendController@store')->name('friends.ad
 Route::get('/friend/accept/{username}', 'FriendController@update')->name('friends.accept');
 
 Route::post('/status', 'StatusController@store')->name('status.post');
+Route::post('/status/{statusId}/reply', 'Statuscontroller@storeReply')->name('status.reply');
 
 

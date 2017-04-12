@@ -13,7 +13,7 @@
 			<div class="form-group {{ $errors->has('email') ? 'has-error' : '' }} ">
 				
 				<label class="control-label" for="email">Your email</label>	
-				<input type="email" class="form-control" id="email" name="email" value=" {{ old('email') ?: '' }} ">
+				<input type="email" class="form-control" id="email" name="email" value="{{ old('email') ?: '' }}">
 
 				<span class="help-block">
 					@if($errors->has('email'))
