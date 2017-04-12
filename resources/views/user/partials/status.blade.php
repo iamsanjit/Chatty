@@ -21,7 +21,7 @@
                 </ul>
 
 
-                {{--Replies--}}
+               {{--Replies--}}
                 @foreach($status->replies as $reply)
 
                         <div class="media">
@@ -50,26 +50,27 @@
 
                 @endforeach
 
+                @if(Auth::check() && (Auth::user()->isFriendWith($status->user) || Auth::user() == $status->user))
+                    <form role="form" action="{{route('status.reply', $status->id)}}" method="post">
 
-                <form role="form" action="{{route('status.reply', $status->id)}}" method="post">
+                            {{ csrf_field() }}
 
-                        {{ csrf_field() }}
+                            <div class="form-group {{ $errors->has('reply-' . $status->id) ? 'has-error' : '' }}">
+                                    
+                                    <textarea name="reply-{{$status->id}}" class="form-control" rows="2" placeholder="Reply to this status"  value=" {{ old('email') ?: '' }} "></textarea>
 
-                        <div class="form-group {{ $errors->has('reply-' . $status->id) ? 'has-error' : '' }}">
-                                
-                                <textarea name="reply-{{$status->id}}" class="form-control" rows="2" placeholder="Reply to this status"  value=" {{ old('email') ?: '' }} "></textarea>
+                                    <span class="help-block">
+                                            @if($errors->has('reply-'. $status->id))
+                                                    {{ $errors->first('reply-'. $status->id) }}
+                                            @endif
+                                    </span>
 
-                                <span class="help-block">
-                                        @if($errors->has('reply-'. $status->id))
-                                                {{ $errors->first('reply-'. $status->id) }}
-                                        @endif
-                                </span>
+                            </div>
 
-                        </div>
+                            <input type="submit" value="Reply" class="btn btn-default btn-sm">
 
-                        <input type="submit" value="Reply" class="btn btn-default btn-sm">
-
-                </form>
+                    </form>
+                @endif
 
         </div>
 </div>

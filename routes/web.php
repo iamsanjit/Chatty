@@ -19,6 +19,8 @@ Route::patch('/user/{username}', 'ProfileController@update')->name('profile.upda
 Route::get('/{username}/friends', 'FriendController@index')->name('friends.index');
 Route::get('/friend/add/{username}', 'FriendController@store')->name('friends.add');
 Route::get('/friend/accept/{username}', 'FriendController@update')->name('friends.accept');
+Route::post('/friend/{username}/delete', 'FriendController@delete')->name('friends.delete');
+
 
 Route::post('/status', 'StatusController@store')->name('status.post');
 Route::post('/status/{statusId}/reply', 'Statuscontroller@storeReply')->name('status.reply');

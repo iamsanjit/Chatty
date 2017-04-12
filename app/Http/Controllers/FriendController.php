@@ -69,6 +69,22 @@ class FriendController extends Controller
 			->with('info', 'You and ' . $user->getFirstnameOrUsername() . ' are now friends.');
 
 	}
+
+	public function delete($username) {
+		$user = User::where('username', $username)->first();
+		if (!$user) {
+			return redirect()
+				->home()
+				->with('info', 'That user could not be found.');
+		}
+
+		if (!Auth::user()->isFriendWith($user)) {
+			return redirect()->home();
+		}
+
+		Auth::user()->removeFriend($user);
+		return redirect()->back();
+	}
 }
 
 

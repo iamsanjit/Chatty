@@ -16,7 +16,8 @@ class ProfileController extends Controller
        	public function show($username)
        	{	
        		$user = User::where('username', $username)->first();
-       		return $user ? View ('user.profile', compact('user')) : abort(404);
+          $statuses = $user->statuses()->notReply()->get();
+       		return $user ? View ('user.profile', compact('user', 'statuses')) : abort(404);
        	}
 
        	public function edit()

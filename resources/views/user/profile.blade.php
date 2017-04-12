@@ -23,6 +23,11 @@
 
 				<p>You and {{ $user->getFirstnameOrUsername() }} are friends.</p>
 
+				<form action="{{route('friends.delete', $user->username)}}" method="POST">
+					{{csrf_field()}}
+					<button type="submit" class="btn btn-primary">Unfriend</button>
+				</form>
+
 			@elseif (Auth::user() != $user)
 			
 				<a href="{{route('friends.add', $user->username)}}" class="btn btn-primary">
@@ -38,8 +43,9 @@
 	<div class="col-xs-9">
 		<div class="row">
 			<div class="col-xs-12">
-				<h4>Your updates</h4>
-				<hr>
+				@foreach($statuses as $status)
+					@include('user.partials.status')
+				@endforeach
 			</div>
 		</div>
 	</div>
