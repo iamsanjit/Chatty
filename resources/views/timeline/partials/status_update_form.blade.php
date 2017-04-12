@@ -1,7 +1,7 @@
 <div class="row">
-	<div class="col-12">
+	<div class="col-md-12">
 		
-		<form class="col-12" method="POST" action="{{route('status.post')}}">
+		<form method="POST" action="{{route('status.post')}}">
 
 			{{ csrf_field() }}
 			

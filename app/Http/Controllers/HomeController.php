@@ -3,6 +3,7 @@
 namespace Chatty\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Chatty\Models\Status;
 use Auth;
 
 class HomeController extends Controller
@@ -10,7 +11,14 @@ class HomeController extends Controller
 	public function index()
 	{
 		if (Auth::check()) {
-			return View('timeline.index');
+
+			$statuses = Status::where( function($query) {
+				return $query->where('user_id', Auth::user()->id)
+					->orWhereIn('user_id', Auth::user()->friends()->pluck('id'));
+			}) 
+			->orderBy('created_at', 'desc')
+			->paginate(5);
+			return View('timeline.index', compact('statuses'));
 		}
 		return view('home');
 	}
