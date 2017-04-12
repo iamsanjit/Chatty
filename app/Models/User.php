@@ -1,7 +1,6 @@
 <?php
 
 namespace Chatty\Models;
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
@@ -18,6 +17,10 @@ class User extends Model implements AuthenticatableContract
 		'last_name',
 		'location'
 	];
+
+	public function statuses() {
+		return $this->hasMany('Chatty\Models\Status', 'user_id');
+	}
 
 	public function friends() {
 		return $this->friendsOfMine()->wherePivot('accepted', true)->get()->merge(

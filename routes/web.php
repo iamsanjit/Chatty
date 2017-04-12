@@ -20,4 +20,6 @@ Route::get('/{username}/friends', 'FriendController@index')->name('friends.index
 Route::get('/friend/add/{username}', 'FriendController@store')->name('friends.add');
 Route::get('/friend/accept/{username}', 'FriendController@update')->name('friends.accept');
 
+Route::post('/status', 'StatusController@store')->name('status.post');
+
 
